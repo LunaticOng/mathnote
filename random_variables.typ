@@ -43,11 +43,11 @@
     [RV], [pdf],
     [CF], [mean], [variance]
   ),
-  [Uniform], $1/(b-a), b in [a,b]$, $cases((e^(i t b)-e^(i t a))/(i t(b-a)) "for" t != 0, 1 "for" t=0)$, $(a+b)/2$, $(b-a)^2/12$,
+  [Uniform], $1/(b-a), b in [a,b]$, $cases((e^(i t b)-e^(i t a))/(i t(b-a)) "for" t eq.not 0, 1 "for" t=0)$, $(a+b)/2$, $(b-a)^2/12$,
   [Exponential], $lambda e^(-lambda x), x >= 0$, $lambda/(lambda-i t)$, $1/lambda$, $1/lambda^2$,
   [Normal], $1/(sqrt(2 pi sigma^2)) e^(-((x-mu)^2)/(2 sigma^2))$, $e^(i mu t-(sigma^2 t^2)/2)$, $mu$, $sigma^2$,
-  [Weibull], $(beta/alpha) (x/alpha)^(beta-1) e^(- (x/alpha)^beta), x>=0$, $sum_(n=0)^(oo) ((i t)^n alpha^n)/n! Gamma(1+n/beta)$, $alpha Gamma(1+1/beta)$, $alpha^2 [Gamma(1+2/beta)-Gamma^2(1+1/beta)]$,
-  [Gamma], $(lambda^k x^(k-1) e^(-lambda k))/(Gamma(k)), x >= 0$, $(1-(i t)/lambda)^(-k)$, $k/lambda$, $k/lambda^2$,
+  [Weibull], $(beta/alpha) (x/alpha)^(beta-1) e^(- (x/alpha)^beta), x gt.eq 0$, $sum_(n=0)^(oo) ((i t)^n alpha^n)/n! Gamma(1+n/beta)$, $alpha Gamma(1+1/beta)$, $alpha^2 [Gamma(1+2/beta)-Gamma^2(1+1/beta)]$,
+  [Gamma], $(lambda^k x^(k-1) e^(-lambda k))/(Gamma(k)), x  gt.eq 0$, $(1-(i t)/lambda)^(-k)$, $k/lambda$, $k/lambda^2$,
   [Beta], $(x^(alpha-1) (1-x)^(beta-1))/(Beta(a, b)), x in [0,1]$, $\ _1 F_1(alpha;alpha+beta; i t)$, $alpha/(alpha+beta)$, $(alpha beta)/((alpha + beta)^2 (alpha + beta + 1))$,
   [Chi-squared], $1/(2^(k/2) Gamma(k/2)) x^(k/2-1)e^(-x/2)$, $(1-2 i t)^(-k / 2)$, $k$, $2k$,
   [Rayleigh], $x/sigma^2 e^(-x^2/(2sigma^2))$, $1-sigma t e^((-sigma^2 t^2)/2) sqrt(pi/2) (e r f i((sigma t)/sqrt(2))-i)$, $sigma sqrt(pi/2)$, $(4-pi)/2 sigma^2$,
@@ -56,6 +56,6 @@
   [Erlang], $(lambda^k x^(k-1) e^(-lambda x))/((k-1)!) , k in NN, lambda in (0, oo)$, $(1-(i t)/lambda)^(-k)$, $k/lambda$, $k/lambda^2$,
   [Cauchy], $1/(pi gamma [1+((x-x_0)/gamma)^2]) , x_0 in RR, gamma in RR^+$, $e^(x_0 i t - gamma abs(t))$, [undefined], [undefined],
   [Nakagami], $(2m^m)/(Gamma(m)Omega^m)x^(2m-1)e^(- m/Omega x^2)$, [unknown], $Gamma(m+1/2)/Gamma(m)(Omega/m)^(1/2)$, $Omega(1-1/m (Gamma(m+1/2)/Gamma(m))^2)$,
-  [Students' t], $Gamma((v+1)/2)/(sqrt(pi nu) Gamma(nu/2)) (1+x^2/nu)^(- (nu+1)/2),v>0$, $(((sqrt(nu)abs(t))^(nu/2) K_(nu/2) (sqrt(nu)abs(t)))/(Gamma(nu/2)2^(nu/2 -1))) "for" nu > 0$, $0 "for" nu > 1$, $cases(v/(v-2) "for" v>2, oo "for" 1<v<=2, "undefined" "otherwise")$,
-  [F], $sqrt(((d_1 x)^(d_1)(d_2)^(d_2))/((d_1 x+d_2)^(d_1 + d_2)))/(x Beta(d_1/2, d_2/2)), d_1, d_2 > 0$, [complicated], $d_2/(d_2-2)$, $(2d_2^2(d_1 +d_2 -2))/(d_1(d_2-2)^2(d_2 - 4))$
+  [Students' t], $Gamma((v+1)/2)/(sqrt(pi nu) Gamma(nu/2)) (1+x^2/nu)^(- (nu+1)/2),v gt 0$, $(((sqrt(nu)abs(t))^(nu/2) K_(nu/2) (sqrt(nu)abs(t)))/(Gamma(nu/2)2^(nu/2 -1))) "for" nu > 0$, $0 "for" nu gt 1$, $cases(v/(v-2) "for" v gt 2, oo "for" 1 lt v lt.eq 2, "undefined" "otherwise")$,
+  [F], $sqrt(((d_1 x)^(d_1)(d_2)^(d_2))/((d_1 x+d_2)^(d_1 + d_2)))/(x Beta(d_1/2, d_2/2)), d_1, d_2 gt 0$, [complicated], $d_2/(d_2-2)$, $(2d_2^2(d_1 +d_2 -2))/(d_1(d_2-2)^2(d_2 - 4))$
 )

@@ -1,5 +1,5 @@
 #set page(
-  paper: "us-letter",
+  paper: "a4",
   columns: 2,
   margin: 1cm,
 )

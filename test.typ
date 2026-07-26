@@ -27,4 +27,5 @@
     [Modulation], [signal shape], [PSD], [power efficiency],
     [demodulation method], $(S N R)_o$, $(S N R)_i$
   ),
+  [AM], $s(t)=A_m [1+k_a ]$
 )
