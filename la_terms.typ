@@ -21,7 +21,7 @@ $f:S->T$
 + domain of $f$ is the set $S$, range of f is $T$
 + image of $f$ is the set $i m(f)={f(s)|s in S}$
 + injective (one-to-one) if $f(x) = f(y) => x = y$
-+ surjective (onto $T$) if $i m(f) = c o d(f)$
++ surjective (onto $T$) if $i m(f) = T$
 + $f$ is bijective $<=>$ $f$ is both injective and surjective
 + $s u p p(f) = {s in S|f(s) != 0}$
 // + $a n n(v) eq {r in R | r v = 0}, v in M "and" M "is R-module"$
@@ -32,9 +32,7 @@ $chevron.l S chevron.r=s p a n(s)={sum_(i=1)^(n) r_i v_i | r_i in F, v_i in S}$
 
 Let $V$ be a vector space spanned by $s_i$
 
-$sum_(i=1)^n a_i v_i = 0, forall i$
-
-then $V$ is linear independent
+$sum_(i=1)^n a_i v_i = 0, forall i$, then $V$ is linear independent
 
 = Linear Transformation
 
@@ -50,7 +48,7 @@ Image = Range = $im(f)={tau v | v in V}$
 $dim(im(tau))$ is called the _rank_ $r k(tau)$
 $tau$ is surjective iff $im(tau) = W$
 
-Rank Nullity theorem: $r k(tau)+n u l l(tau)=dim(V)$
+Rank Nullity theorem: $r k(tau)+n u l l i t y(tau)=dim(V)$
 
 = Matrix Properties
 
@@ -86,7 +84,6 @@ not diagonalizable $eq.triple$ defective
 - Eigenvectors spans $CC^n$
 - for all eigenvalues, AM = GM
 - minimal polynomial with no exponents more than 1
-
 
 = Moore-Penrose Pseudoinverse
 
@@ -149,25 +146,18 @@ Properties:
 
 = Sylvester's formula
 
-/* When the matrix A has k different eigenvalues:
+If A is a diagonalizable matrix
 
-$A_i = 1/(2 pi i) integral.cont_(Gamma_i)
-(z I - A)^(-1) d z$, and
+$f(A) = sum_(i=1)^(k) f(lambda_i) A_i$
 
-$f(A)=sum_(i=1)^s A_i sum_(j=0)^(n_i-1) ((f^((j)) (lambda_i))/j!)(A-lambda_i I)^j$
+Where $A_i$ are the corresponding Frobenius covariants
 
-where $n_i$ is the size of the largest Jordan block for that eigenvalue
+$A_i equiv product_(j = 1 \ j != i)^k (A-lambda_j I)/(lambda_i - lambda_j)$
 
-$Gamma_i$ is a closed curve in the complex plane that encircles the eigenvalue $lambda_i$ only */
+Its generalized case is in #link("https://en.wikipedia.org/wiki/Sylvester%27s_formula")[Wikipedia: Sylvester's Formula]
 
-$f(A) = sum_(i=1)^k f(lambda_i) Z_i$
-,
-$Z_i = product_(j != i) (A - lambda_j I) / (lambda_i - lambda_j)$
+= Cramer's rule
 
-Let $A$ be an $n times n$ matrix with $k$ distinct eigenvalues $lambda_1, lambda_2, dots, lambda_k$. Let $m_i$ be the index of $lambda_i$ in the minimal polynomial of $A$. For an analytic function $f$, the matrix function $f(A)$ is defined as:
+= Gershgorin's Disk Theorem
 
-$ f(A) = sum_(i=1)^k sum_(j=0)^(m_i - 1) f^((j))(lambda_i) / (j!) Z_(i j) $
-
-where $f^((j))(lambda_i)$ is the $j$-th derivative of $f$ at $lambda_i$, and the generalized constituent matrices $Z_(i j)$ are defined by:
-
-$ Z_(i j) = (A - lambda_i I)^j Z_(i 0) $
+= Hadamard's Theorem

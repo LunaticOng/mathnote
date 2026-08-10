@@ -59,7 +59,7 @@ $x(t) convolve y(t) eq integral_(-infinity)^(infinity) x(t minus tau) y(tau) d t
 
 == Discrete Time Convolution:
 
-$x(n) convolve y(n) eq sum_(k=-oo)^(oo) x(k) y(n - k)$
+$x[n] convolve y[n] eq sum_(k=-oo)^(oo) x[k] y[n - k]$
 
 == Properties of Convolution
 
@@ -145,13 +145,14 @@ $\ = 1/(2 pi) integral_(-oo)^(oo) X^*(j omega) X(j omega) d omega = 1/(2 pi) int
   [Linearity], $a x_1(t) + b x_2(t)$, $a X_1(f) + b X_2(f)$,
   [Time Shifting], $x(t - t_0)$, $X(f) exp(- j 2 pi f t_0)$,
   [Freq Shifting], $x(t) exp(j 2 pi f_0 t)$, $X(f - f_0)$,
-  [Scale Property], $x(a t)$, $1/abs(a) X(f/a)$,
+  [Scaling], $x(a t)$, $1/abs(a) X(f/a)$,
   [Duality], $X(t)$, $x(-f)$,
   [Time Diff], $(d^n)/(d t^n) x(t)$, $(j 2 pi f)^n X(f)$,
-  [Time Integration], $integral_(-oo)^(t) x(tau) d tau$, $1/(j 2 pi f) X(f) + 1/2 X(0) delta(f)$,
+  [Time Intg], $integral_(-oo)^(t) x(tau) d tau$, $1/(j 2 pi f) X(f) + 1/2 X(0) delta(f)$,
   [Freq Diff], $t^n x(t)$, $(-1/(j 2 pi))^n (d^n)/(d f^n) X(f)$,
   [Convolution], $x_1(t) convolve x_2(t)$, $X_1(f) X_2(f)$,
   [Multiplication], $x_1(t) x_2(t)$, $X_1(f) convolve X_2(f)$,
+  [Area Under], $integral_(-oo)^(oo) x(t) d t = X(0)$, $x(0) = integral_(-oo)^(oo) X(f) d f$
 )
 
 == Fourier Transforms of Periodic Signals
@@ -430,7 +431,7 @@ $"Frequency Domain:" hat(X)(f) eq [-j dot s g n(f)] X(f)$
   stroke: none,
   $abs(hat(X)(f))^2 eq.triple abs(F{hat(x)(t)})^2 eq abs(X(f))^2$,
   [A signal and its Hilbert transform are orthogonal],
-  $hat(m(t)c(t)) eq m(t)hat(c(t)) \ "where" m(t) "is lowpass and" c(t) "is highpass"$,
+  $hat(m(t)c(t)) eq m(t)hat(c(t)) "," m(t) "is LP and" c(t) "is HP"$,
 )
 
 == Hilbert Transform Pairs
