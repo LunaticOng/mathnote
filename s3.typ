@@ -61,6 +61,23 @@ $x(t) convolve y(t) eq integral_(-infinity)^(infinity) x(t minus tau) y(tau) d t
 
 $x[n] convolve y[n] eq sum_(k=-oo)^(oo) x[k] y[n - k]$
 
+== Convolution skills
+
+=== Graphical solution
+
+#table(
+  columns: (auto, auto, auto),
+  [], [Thin function], [Fat function],
+  [Step 1], [$t -> -tau$], [$t -> tau$],
+  [Step 2], [move left and right, $-tau -> -tau plus.minus t$], [],
+  [Step 3], table.cell(colspan: 2)[Integrate every partial overlap],
+  [Step 4], table.cell(colspan: 2)[Sum them all, finish]
+)
+
+=== DI method
+
+$f(t) convolve g(t) = integral_(-oo)^(t) f(x) d x convolve (d g(t))/(d t)$
+
 == Properties of Convolution
 
 #table(
@@ -81,6 +98,15 @@ $a^n u[-n] convolve b^n u[n] eq cases((a^(n+1))/(b-a)\, n < 0, (b^(n+1))/(b-a)\,
 
 $-a^n u[-n-1] convolve b^n u[n] eq cases((a^(n+1))/(b-a)\, n < -1, (b^(n+1))/(b-a)\, n >= -1)$
 
+== Cross-correlation
+
+$R_(x y)(t) = x(t) convolve y^*(-t)$
+
+=== Key Properties of autocorrelation
+
+$R_(x x)(-tau) = R_(x x)(tau)$ \
+$R_(x x)(0) >= |R_(x x)(tau)|$
+
 = Continuous Time Fourier Series
 
 == Trigonometric Form
@@ -100,6 +126,54 @@ $x(t)=a_0/2 +sum_(n=1)^(oo) sqrt(a_n^2+b_n^2) cos((2 pi n t)/T + tan^(-1)(- b_n/
 $x(t)=sum_(n=-oo)^(oo) c_n exp((j 2 pi n t)/T)$
 
 $c_n = 1/T integral_T x(t) exp((-j 2 pi n t)/T)$
+
+== CTFS Properties
+
+#table(
+  columns: (auto, 1fr, 1fr),
+  // align: (center + horizon, left + horizon, left + horizon),
+  stroke: 0.5pt + luma(150),
+  // fill: (col, row) => if row == 0 { luma(230) } else { none },
+  [*Property*], [*$x(t)$*], [*$a_k$*],
+  [Linearity], [$alpha x(t) + beta y(t)$], [$alpha a_k + beta b_k$],
+  [Time Shifting], [$x(t - t_0)$], [$a_k e^(-j k omega_0 t_0)$],
+  [Frequency Shifting], [$e^(j M omega_0 t) x(t)$], [$a_(k - M)$],
+  [Conjugation], [$x^*(t)$], [$a_(-k)^*$],
+  [Time Reversal], [$x(-t)$], [$a_(-k)$],
+  [Time Scaling ($a > 0$)], [$x(a t)$ \ (Period $T_0 / a$)], [$a_k$ (Frequencies scale $k a omega_0$)],
+  [Periodic Convolution], [$(x convolve y)(t)$], [$T_0 a_k b_k$],
+  [Multiplication], [$x(t) y(t)$], [$(a convolve b)_k$],
+  [Differentiation], [$(dif / (dif t)) x(t)$], [$(j k omega_0) a_k$],
+  [Integration], [$integral_(-infinity)^t x(tau) dif tau$ \ (if $a_0 = 0$)], [$(1 / (j k omega_0)) a_k$]
+)
+
+== CTFS Pairs
+
+#table(
+  columns: (auto, auto),
+  // align: (left + horizon, left + horizon, left + horizon),
+  // stroke: 0.5pt + luma(150),
+  // fill: (col, row) => if row == 0 { luma(230) } else { none },
+  [$x(t)$], [$a_k$],
+  
+  [$sum_(m=-infinity)^(infinity) delta(t - m T_0)$], 
+  [$1 / T_0$],
+  
+  [$e^(j M omega_0 t) (M in ZZ)$], 
+  [$delta[k - M]$],
+  
+  [$cos(M omega_0 t)$], 
+  [$1/2 (delta[k - M] + delta[k + M])$],
+  
+  [$sin(M omega_0 t)$], 
+  [$1/(2j) (delta[k - M] - delta[k + M])$],
+)
+
+== Symmetry Relations for Real-Valued Signals
+If $x(t) in RR$, the spectrum possesses conjugate symmetry:
+$a_(-k) = a_k^* \ "implies" |a_(-k)| = |a_k| "(even function)" \ "and" quad arg(a_(-k)) = -arg(a_k) "(odd function)"$
+- $x(t)$ is real and "even" ($x(t) = x(-t)$) $"implies" a_k in RR$ and "even" ($a_(-k) = a_k$).
+- $x(t)$ is real and "odd" ($x(t) = -x(-t)$) $"implies" a_k in j RR$ (purely imaginary) and "odd" ($a_(-k) = -a_k$).
 
 == Dirichlet conditions
 
@@ -210,12 +284,18 @@ $c_k = 1/N sum_(n=0)^(N-1) x[n] exp(-j k Omega_0 n)$
 == DTFS Properties
 
 #table(
-  columns: (auto, 4cm, auto),
+  columns: (auto, auto, auto),
   align: horizon,
   stroke: 0.5pt + gray,
   table.header([*Property*], [*Time Domain* $x[n]$], [*Frequency Domain* $a_k$]),
 
   [Linearity], $A x[n] + B y[n]$, $A a_k + B b_k$,
+
+  [Real signal], $x[n] in RR$, $a_(-k)=a_k^*$, 
+
+  [Even signal], $x[-n] = x[n]$, $a_k in RR$,
+
+  [Odd signal], $x[-n] = -x[n]$, $a_k "is imaginary"$,
 
   [Time Shift], $x[n - n_0]$, $a_k e^(-j k (2pi)/N n_0)$,
 
@@ -228,6 +308,8 @@ $c_k = 1/N sum_(n=0)^(N-1) x[n] exp(-j k Omega_0 n)$
   [Periodic Convolution], $sum_(r=0)^(N-1) x[r] y[n-r]$, $N a_k b_k$,
 
   [Multiplication], $x[n] y[n]$, $sum_(l=0)^(N-1) a_l b_(k-l)$,
+
+  [Difference], $x[n] - x[n-1]$, $(1- e^(-j (2 π)/N k))a_k$,
 
   [Parseval's Relation], $1/N sum_(n=0)^(N-1) |x[n]|^2$, $sum_(k=0)^(N-1) |a_k|^2$,
 )
@@ -263,6 +345,10 @@ $x[n] eq integral_1 X(F) e^(j 2 pi F n) d F <-> X(F) eq sum_(n=-oo)^(oo) x[n] e^
 
 $x[n] eq 1/(2pi) integral_(2 pi) X(e^(j Omega))e^(j Omega n) d Omega <-> \ X(e^(j Omega)) eq sum_(n=-oo)^(oo) x[n] e^(-j Omega n)$
 
+== Periodicity of DTFT
+
+$X(e^(j(omega + 2 pi))) = X(e^(-j omega))$
+
 == DTFT Properties
 
 // Scaling hasn't been written
@@ -274,21 +360,27 @@ $x[n] eq 1/(2pi) integral_(2 pi) X(e^(j Omega))e^(j Omega n) d Omega <-> \ X(e^(
   [*Property*], [*Time Domain*], [*Frequency Domain*],
 
   [Linearity], $a x_1[n] + b x_2[n]$, $a X_1(F) + b X_2(F)$,
+  [Real signals], $x[n] in RR$, $X(-F) = X^*(F)$,
+  [Even signals], $x[-n] = x[n]$, $X(F) in RR$,
+  [Odd signals], $x[-n] = -x[n]$, $X(F) "is imaginary"$,
   [Time Shifting], $x[n - n_0]$, $e^(-j 2 pi F n_0) X(F)$,
   [Freq Shifting], $e^(j 2 pi F_0 n)x[n]$, $X(F-F_0)$,
   [Conjugation], $x^*[n]$, $X^*(-F)$,
   [Time Reversal], $x[-n]$, $X(-F)$,
   [Diff in Time], $x[n] - x[n - 1]$, $(1-e^(-j 2 pi F)) X(F)$,
-  [Accumulation], $sum_(m=-oo)^(n) x[m]$, $X(F)/(1-e^(-j 2 pi F)) + 1/2 X(0) delta_1(f)$,
-  [Convolution], $x_1[n] * x_2[n]$, $1/N X_1(F) * X_2(F)$,
+  [Diff in Freq], $n x[n]$, $j (d X(e^(-j 2 pi F)))/(d)$,
+  [Accumulation], $sum_(m=-oo)^(n) x[m]$, $X(exp(j 2 pi f))/(1-exp(-j 2 pi F)) + 1/2 X(0) delta_1(f)$,
+  [Convolution], $x_1[n] * x_2[n]$, $1/N X_1(F) convolve_(2 pi) X_2(F)$,
+  [Parseval], $sum_(n=-oo)^(oo) |x[n]|^2$, $integral_(1) |X(e^(j 2 pi F))|^2 d F$
 )
 
-== DTFT Pairs
+== DTFT Pairs ($Omega$ form)
 
 #table(
   columns: 3,
   table.header($x[n]$, $X(e^(j Omega))$, [ROC]),
   $delta[n]$, $1$, [all $Omega$],
+  $a^n u[n]$, $1/(1-a e^(-j omega))$, $|a| < 1$,
   $n a^n u[n]$, $(alpha e^(j Omega)) / (e^(j Omega) - alpha)^2$, $abs(alpha)<1$,
   $-n a^n u[-n-1]$, $(alpha e^(j Omega)) / (e^(j Omega) - alpha)^2$, $abs(alpha)>1$,
   $alpha^n sin(Omega_0 n) u[n]$,
@@ -418,7 +510,7 @@ $x[n] = 1/(2 pi j) integral.cont_C X(z) z^(n - 1) d z$
 )
 
 
-= Hilbert Transform
+= Hilbert Transform (LTI system actually)
 
 $"Time Domain:" hat(x)(t) = x(t) convolve 1/(pi t)$
 

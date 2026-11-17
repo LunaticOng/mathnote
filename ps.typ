@@ -15,6 +15,41 @@
   text(17pt)[*#title*],
 )
 
+= The law of total something
+
+== Probability
+
+$P(A) = sum_n P(A B_n),  forall A "and" B_i "are mutually exclusive"$ 
+
+== Expectation
+
+Intution:
+
+$EE[g(X)] = sum_i E[g(X)|A_i] P(A_i)$
+
+in its continuous counterpart
+
+$EE[g(X)] &= integral_i E[g(X)|Y] f_Y (y) d y \
+&= EE[EE[g(X)|Y]]$
+
+Prove $EE[EE[Y|X]] = EE[Y]$:
+
+$EE[EE[(Y|X)]] = integral_(-oo)^oo EE[Y|x] f_X (x) d x \ eq integral_(-oo)^oo [integral_(-oo)^oo y f_(Y|X) (Y|x) d y] f_X (x) d x\ eq integral_(-oo)^oo integral_(-oo)^oo y (f_(X Y) (x, y))/(f_X (x)) f_X (x) d x d y \ eq integral_(-oo)^oo y [integral_(-oo)^oo f_(X Y) (x,y) d x] d y \ eq integral_(-oo)^oo y f_Y (y) d y eq EE[Y] qed$
+
+== Variance
+
+Prove $V a r(Y) = EE[V a r(Y|X)] + V a r(EE[Y|X])$:
+
+$V a r(Y) = EE[Y^2] - EE[Y]^2$
+
+$EE[Y^2] &= EE[EE[Y^2|X]] \
+&= EE[V a r(Y|X) - (EE[Y|X])^2] \
+&= EE[V a r(Y|X)] - EE[(EE[Y|X])^2]$
+
+$EE[Y]^2 = (EE[EE[Y|X]])^2$
+
+regroup to finish the prove $qed$
+
 = Probability Generating Function
 
 When X is a #text(red)[nonnegative int-valued discrete] r.v.
@@ -39,9 +74,10 @@ $M_X (t) = EE[e^(t X)] &= cases(sum_i e^(t x_i) p_X (x_i) ", (discrete)", integr
 
 == Properties:
 
++ $M_X (0) = 1$: for a validity check
 + $k$th moment of X: $EE[X^k] = M_X^((k)) (0), k in NN$
-+ If two r.v.'s have the same MGF, then they must have the same distribution
-+ MGF of a r.v. may not exist, even it does, it can be infinite
++ Uniqueness: If two r.v.'s have the same MGF, then they must have the same distribution
++ MGF of a r.v. #text(red)[may not exist], even it does, it may have an ROC
 
 = Cumulant Generating Function
 
@@ -71,9 +107,11 @@ $phi_X (t) = EE[e^(i t X)] = EE[cos(t X) + i sin(t X)]$
 
 #table(
   columns: (auto, auto),
-  $M_X (i omega) = phi_X (omega)$,
+  $M_X (i t) = phi_X (t)$,
   $phi_X (-i t) = M_X (t)$
 )
+
+= Skewness and Kurtosis
 
 = Cauchy-Schwartz Inequality
 
@@ -235,7 +273,7 @@ $= (n(n-1)...(n-k+1)) / (k!) (lambda/n)^k (1 - lambda/n)^(n-k)$
 $= (lambda^k)/(k!) [ (n(n-1)...(n-k+1))/n^k ] (1 - lambda/n)^n (1 - lambda/n)^(-k)$
 
 Consider the limit as $n -> oo$:
-1. $(n(n-1)...(n-k+1))/n^k = 1 (1-1/n) ... (1-(k-1)/n) -> 1$
+1. $n^(underline(k))/n^k = 1 (1-1/n) ... (1-(k-1)/n) -> 1$
 2. $(1 - lambda/n)^n -> e^(-lambda)$ (Standard limit definition of exponential)
 3. $(1 - lambda/n)^(-k) -> 1$
 Thus, $lim_(n->oo) P(X=k) = (lambda^k)/(k!) e^(-lambda) qed$
@@ -280,8 +318,41 @@ $P(X = n) = P(X > n-1) - P(X > n) \ = (1-p)^(n-1) - (1-p)^n \ = (1-p)^(n-1) [1 -
 
 This is the PMF of a Geometric distribution. $qed$
 
-= Miscellaneous
+= Memorylessness of Exponential Distribution
 
-Prove $EE[EE[Y|X]] = EE[Y]$:
+== Prove that exponential distribution is memoryless:
+Let $X ~ "Exp"(lambda)$, so $P(X > x) = e^(-lambda x)$ for $x >= 0$.
 
-$EE[EE[(Y|X)]] = integral_(-oo)^oo EE[Y|x] f_X (x) d x \ eq integral_(-oo)^oo [integral_(-oo)^oo y f_(Y|X) (Y|x) d y] f_X (x) d x\ eq integral_(-oo)^oo integral_(-oo)^oo y (f_(X Y) (x, y))/(f_X (x)) f_X (x) d x d y \ eq integral_(-oo)^oo y [integral_(-oo)^oo f_(X Y) (x,y) d x] d y \ eq integral_(-oo)^oo y f_Y (y) d y eq EE[Y] qed$
+$P(X > t + s | X > t) = (P(X > t + s "and" X > t)) / (P(X > t))$
+
+Since $t + s > t$ for $s > 0$, the intersection is just $X > t + s$.
+
+$= (P(X > t + s)) / (P(X > t)) = (e^(-lambda (t + s))) / (e^(-lambda t))$
+
+$= e^(-lambda s) = P(X > s) qed$
+
+== Prove that continuous memoryless r.v. on $[0, oo)$ is exponential distribution:
+Let $X$ be a continuous r.v. on $[0, oo)$.
+
+Let $G(t) = P(X > t)$ for $t >= 0$.
+
+Memoryless property implies $P(X > t + s | X > t) = P(X > s)$.
+
+$=> (P(X > t + s)) / (P(X > t)) = P(X > s)$
+
+$=> G(t + s) = G(t) G(s)$
+
+This is Cauchy's functional equation. Assuming $G(t)$ is continuous (or right-continuous since $G(t) = 1 - F_X (t)$, the general solution for $G(t) in [0, 1]$ is:
+
+$G(t) = e^(-lambda t) " for some " lambda > 0$.
+
+Then $P(X > t) = e^(-lambda t)$.
+
+The CDF is $F_X(t) = P(X <= t) = 1 - P(X > t) = 1 - e^(-lambda t)$.
+
+Differentiating $F_X(t)$ with respect to $t$ gives the PDF:
+
+$f_X(t) = d / (d t) (1 - e^(-lambda t)) = lambda e^(-lambda t) " for " t >= 0$.
+
+This is the PDF of an Exponential distribution. $qed$
+

@@ -37,6 +37,9 @@ $mat(n-1; k_1-1\,k_2\,...\,k_p)+...+mat(n-1; k_1\,k_2\,...\,k_p-1)=mat(n; k_1\,k
 
 where $mat(n; k_1\,k_2\,...\,k_m)=n!/(k_1 ! k_2 !...k_m !)$
 
+== Multinomial expansion
+
+
 = Vandermonde's identity
 
 $sum_(k_1+...+k_p=m) mat(n_1; k_1) mat(n_2; k_2)...mat(n_p; k_p)=mat(n_1+...+n_p; m)$
@@ -113,6 +116,8 @@ $Y_n (x)=- x^(-n)/pi sum_(m=0)^(n-1) ((n-m-1)!)/(2^(2m-n)m!) x^(2m)$
 
 $I_n (x)=1/(2pi) integral_(-pi)^(pi) e^(x cos(theta)) cos(n theta) d theta$
 
+$integral_(0)^(oo) x e^(-a^2 x^2) I_0 (b x) d x = 1/(2 a^2)exp(b^2/(4a^2))$
+
 = Legendre's Polynomials
 
 The solution to the differential equation: 
@@ -156,3 +161,7 @@ $e r f(x)+ e r f c(x) = Q(x) + Phi(x) = 1$
 If: $(P(x))/((x-a)^n Q(x)) = sum_(k=1)^n (A_k)/(x-a)^k +$ others
 
 $A_(n-m) = 1/(m!) lim_(x->a) (d^m)/(d x^m) [(x-a)^n (P(x))/((x-a)^n Q(x))]$
+
+= Generalized Gaussian integral
+
+$integral_(-oo)^(oo) exp(-[a x^2 + b x + c]) = sqrt(pi/a) exp((b^2 - 4a c)/(4a))$

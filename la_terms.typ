@@ -71,7 +71,7 @@ Rank Nullity theorem: $r k(tau)+n u l l i t y(tau)=dim(V)$
 
 = Invertibility
 
-- $det(A) eq.not 0$
+- $det(A) eq.not 0$ (non singular)
 - $r k(A)=n$ and $ker(A)={0}$
 - all cols and rows are linear independent
 - $A$ is row equivalent to $I$
@@ -117,6 +117,14 @@ Definition
 + $overline(chevron.l x \, y chevron.r)=chevron.l y, x chevron.r$
 + $chevron.l x, x chevron.r > 0 "when" x != 0$
 
+= Sepcial matrices
+
+== Toeplitz matrix
+
+== Hankel matrix
+
+== Vandermonde matrix
+
 = Quadratic Form
 
 $Q(x) = x^T A x = sum_(i,j) A_(i j) x_i x_j$
@@ -132,8 +140,9 @@ Let $A$ be a symmetric matrix.
 - Negative Semidefinite: $x^T A x <= 0, forall x$
 - Indefinite: $x^T A x$ takes both positive and negative values
 
-/* = Householder Transformation
+== Householder Transformation
 
+/*
 $P = I - 2 v v^T$
 
 where $v$ is a unit vector ($||v||=1$).
@@ -143,6 +152,8 @@ Properties:
 - Orthogonal: $P^T = P^(-1)$
 - Involutory: $P^2 = I$
 - $det(P) = -1$ */
+
+== Rayleigh Quotient
 
 = Sylvester's formula
 
@@ -154,7 +165,7 @@ Where $A_i$ are the corresponding Frobenius covariants
 
 $A_i equiv product_(j = 1 \ j != i)^k (A-lambda_j I)/(lambda_i - lambda_j)$
 
-Its generalized case is in #link("https://en.wikipedia.org/wiki/Sylvester%27s_formula")[Wikipedia: Sylvester's Formula]
+// Its generalized case is in #link("https://en.wikipedia.org/wiki/Sylvester%27s_formula")[Wikipedia: Sylvester's Formula]
 
 = Cramer's rule
 

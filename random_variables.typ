@@ -47,7 +47,7 @@
   [Exponential], $lambda e^(-lambda x), x >= 0$, $lambda/(lambda-i t)$, $1/lambda$, $1/lambda^2$,
   [Normal], $1/(sqrt(2 pi sigma^2)) e^(-((x-mu)^2)/(2 sigma^2))$, $e^(i mu t-(sigma^2 t^2)/2)$, $mu$, $sigma^2$,
   [Weibull], $(beta/alpha) (x/alpha)^(beta-1) e^(- (x/alpha)^beta), x gt.eq 0$, $sum_(n=0)^(oo) ((i t)^n alpha^n)/n! Gamma(1+n/beta)$, $alpha Gamma(1+1/beta)$, $alpha^2 [Gamma(1+2/beta)-Gamma^2(1+1/beta)]$,
-  [Gamma], $(lambda^k x^(k-1) e^(-lambda k))/(Gamma(k)), x  gt.eq 0$, $(1-(i t)/lambda)^(-k)$, $k/lambda$, $k/lambda^2$,
+  [Gamma (rate)], $(lambda^k x^(k-1) e^(-lambda k))/(Gamma(k)), x  gt.eq 0$, $(1-(i t)/lambda)^(-k)$, $k/lambda$, $k/lambda^2$,
   [Beta], $(x^(alpha-1) (1-x)^(beta-1))/(Beta(a, b)), x in [0,1]$, $\ _1 F_1(alpha;alpha+beta; i t)$, $alpha/(alpha+beta)$, $(alpha beta)/((alpha + beta)^2 (alpha + beta + 1))$,
   [Chi-squared], $1/(2^(k/2) Gamma(k/2)) x^(k/2-1)e^(-x/2)$, $(1-2 i t)^(-k / 2)$, $k$, $2k$,
   [Rayleigh], $x/sigma^2 e^(-x^2/(2sigma^2))$, $1-sigma t e^((-sigma^2 t^2)/2) sqrt(pi/2) (e r f i((sigma t)/sqrt(2))-i)$, $sigma sqrt(pi/2)$, $(4-pi)/2 sigma^2$,
